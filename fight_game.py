@@ -2,7 +2,7 @@ import random, time
 
 print('''Welcome in my game. You will fight until you will die.
 You can choose between four faction. Choose your faction. Then choose a fighter from that faction
-and fight against random enemy\n\n''')
+and fight against random enemy.\n\n''')
 
 time.sleep(2)
 username = input("What is your name?\n")
@@ -17,20 +17,18 @@ while faction != "1" and faction != "2" and faction != "3" and faction != "4":
 
 choose_fighter = ''
 print("You choose " + faction)
-
+fighter_list = [1,2,3,4,5,6,7,8,9,10,11,12]
 time.sleep(2)
 
-while choose_fighter != "1" and choose_fighter != "2" and choose_fighter != "3" and choose_fighter != "4"
-and choose_fighter != "5" and choose_fighter != "6" and choose_fighter != "7" and choose_fighter != "8"
-and choose_fighter != "9" and choose_fighter != "10" and choose_fighter != "11" and choose_fighter != "12":
+while choose_fighter not in fighter_list:
     if faction == "1":
-        choose_fighter = input("Choose your fighter: 1. Kitana, 2. Shao Kahn, 3. Baraka \n")
+        choose_fighter = int(input("Choose your fighter: 1. Kitana, 2. Shao Kahn, 3. Baraka \n"))
     elif faction == "2":
-        choose_fighter = input("Choose your fighter: 4. Quan Chi, 5. Shinnok, 6. Noob Saibot \n")
+        choose_fighter = int(input("Choose your fighter: 4. Quan Chi, 5. Shinnok, 6. Noob Saibot \n"))
     elif faction == "3":
-        choose_fighter = input("Choose your fighter: 7. Raiden, 8. Liu Kang, 9. Kung Lao \n")
+        choose_fighter = int(input("Choose your fighter: 7. Raiden, 8. Liu Kang, 9. Kung Lao \n"))
     elif faction == "4":
-        choose_fighter = input("Choose your fighter: 10. Johnny Cage, 11. Sonya Blade, 12. Jax Briggs \n")
+        choose_fighter = int(input("Choose your fighter: 10. Johnny Cage, 11. Sonya Blade, 12. Jax Briggs \n"))
 
 
 class Fighter(object):
@@ -94,8 +92,8 @@ sonya_blade = Spec_Ops_Fighter("Sonya Blade",120, 1000, 60, 70, "Sonya Blade is 
 
 jax_briggs = Spec_Ops_Fighter("Jax Briggs",110, 1100, 70, 60, "Major Jackson Briggs is one of the toughest units in the Special Forces. He receives a distress call from Gemini telling him that there was a prison break and several members of the Black Dragon such as Tasia, No Face Tremor and Jarek and have went to a place in Chicago. Jax believes that the mastermind behind the prison break was none other than Kano. Jax tracks down the escapees and finds No Face in an abandoned warehouse and defeats him, he then faces Tasia in the sewers and defeats her. Jax then receives word that the Black Dragon took hold of a corporate building and Jax heads there. In the building, he faces Jarek and defeats him. Jarke tells Jax that the last escapee: Tremor is in the lost city of Sinkiang, as Jax defeats Tremor he also finds a portal to Outworld. Where he faces Kano who takes in his possession: The Eye of Chitian which has strong magic. Jax defeats Kano and takes the artifact with him. ")
 
-fighter_list = {"1":kitana ,"2":shao_kahn ,"3":baraka ,"4":quan_chi ,"5":shinnok ,"6":noob_saibot ,
-"7":raiden ,"8":liu_kang ,"9":kung_lao ,"10":johnny_cage ,"11":sonya_blade ,"12":jax_briggs}
+fighter_dict = {1:kitana ,2:shao_kahn ,3:baraka ,4:quan_chi ,5:shinnok ,6:noob_saibot ,
+7:raiden ,8:liu_kang ,9:kung_lao ,10:johnny_cage ,11:sonya_blade ,12:jax_briggs}
 
-player_fighter = fighter_list[choose_fighter]
+player_fighter = fighter_dict[choose_fighter]
 player_fighter.talk()
