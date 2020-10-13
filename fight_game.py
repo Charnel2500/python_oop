@@ -1,12 +1,13 @@
 import random, time
 
-print('''Witaj w grze, w której toczysz walke na smierc i zycie z roznymi przerazajacymi przeciwnikami.
-Do wyboru masz trzy frakcje: Pozaswiat, Czelusc i Ziemie. Wybierz najpierw frakcje. Potem wybierz
-wojownika z danej frakcji, a potem walcz z losowym przeciwnikiem\n\n\n''')
+print('''Welcome in my game. You will fight until you will die.
+You can choose between four faction. Choose your faction. Then choose a fighter from that faction
+and fight against random enemy\n\n''')
 
 time.sleep(2)
 username = input("What is your name?\n")
 print("Hi " + username + "!")
+time.sleep(2)
 
 faction = input("Choose your faction. Give me a number. 1. Outworld, 2. Netherrealm, 3. Martial Artist, 4. Spec Ops\n")
 
@@ -14,17 +15,23 @@ while faction != "1" and faction != "2" and faction != "3" and faction != "4":
     print("Wrong. Write just number: 1 or 2 or 3 or 4!")
     faction = input("Choose your faction. Give me a number. 1. Outworld, 2. Netherrealm, 3. Martial Artist, 4. Spec Ops\n")
 
-fighter = ''
+choose_fighter = ''
 print("You choose " + faction)
-while fighter != "1" and fighter != "2" and fighter != "3":
-    if faction == 1:
-        fighter = input("Choose your fighter: 1. Kitana, 2. Shao Kahn, 3. Baraka")
-    elif faction == 2:
-        fighter = input("Choose your fighter: 1. Quan Chi, 2. Shinnok, 3. Noob Saibot")
-    elif faction == 3:
-        fighter = input("Choose your fighter: 1. Raiden, 2. Liu Kang, 3. Kung Lao")
-    elif faction == 4:
-        fighter = input("Choose your fighter: 1. Johnny Cage, 2. Sonya Blade, 3. Jax Briggs")
+
+time.sleep(2)
+
+while choose_fighter != "1" and choose_fighter != "2" and choose_fighter != "3" and choose_fighter != "4"
+and choose_fighter != "5" and choose_fighter != "6" and choose_fighter != "7" and choose_fighter != "8"
+and choose_fighter != "9" and choose_fighter != "10" and choose_fighter != "11" and choose_fighter != "12":
+    if faction == "1":
+        choose_fighter = input("Choose your fighter: 1. Kitana, 2. Shao Kahn, 3. Baraka \n")
+    elif faction == "2":
+        choose_fighter = input("Choose your fighter: 4. Quan Chi, 5. Shinnok, 6. Noob Saibot \n")
+    elif faction == "3":
+        choose_fighter = input("Choose your fighter: 7. Raiden, 8. Liu Kang, 9. Kung Lao \n")
+    elif faction == "4":
+        choose_fighter = input("Choose your fighter: 10. Johnny Cage, 11. Sonya Blade, 12. Jax Briggs \n")
+
 
 class Fighter(object):
 
@@ -35,7 +42,13 @@ class Fighter(object):
         self.hp = hp
         self.defense = defense
         self.regeneration = regeneration
+        self.description = description
         Fighter.total += 1
+
+    def talk(self):
+        print("Good choose. My name is " + self.name + ".\n")
+        print("This is my description: \n" + self.description + ".\n")
+
 
 class Outworld_Fighter(Fighter):
     def __str__(self):
@@ -80,3 +93,9 @@ johnny_cage = Spec_Ops_Fighter("Johnny Cage",100, 1200, 80, 50, "Johnny Cage was
 sonya_blade = Spec_Ops_Fighter("Sonya Blade",120, 1000, 60, 70, "Sonya Blade is a Lieutenant of the United States Army Special Forces. She began her military career by teaming up with Major Jackson Briggs (or Jax) in his mission to bring down the international criminal organization the Black Dragon. On one of these missions, she and a good partner of hers ran ito one of the organizations' members named Kano. During a fight with Kano, he killed Sonya's partner, this would make Kano Sonya's bitter enemy and she will not rest until he is brought to justice by any means necessary. Sonya soon becomes a leader of her own unit that will be dedicated to the apprehention of Kano. ")
 
 jax_briggs = Spec_Ops_Fighter("Jax Briggs",110, 1100, 70, 60, "Major Jackson Briggs is one of the toughest units in the Special Forces. He receives a distress call from Gemini telling him that there was a prison break and several members of the Black Dragon such as Tasia, No Face Tremor and Jarek and have went to a place in Chicago. Jax believes that the mastermind behind the prison break was none other than Kano. Jax tracks down the escapees and finds No Face in an abandoned warehouse and defeats him, he then faces Tasia in the sewers and defeats her. Jax then receives word that the Black Dragon took hold of a corporate building and Jax heads there. In the building, he faces Jarek and defeats him. Jarke tells Jax that the last escapee: Tremor is in the lost city of Sinkiang, as Jax defeats Tremor he also finds a portal to Outworld. Where he faces Kano who takes in his possession: The Eye of Chitian which has strong magic. Jax defeats Kano and takes the artifact with him. ")
+
+fighter_list = {"1":kitana ,"2":shao_kahn ,"3":baraka ,"4":quan_chi ,"5":shinnok ,"6":noob_saibot ,
+"7":raiden ,"8":liu_kang ,"9":kung_lao ,"10":johnny_cage ,"11":sonya_blade ,"12":jax_briggs}
+
+player_fighter = fighter_list[choose_fighter]
+player_fighter.talk()
