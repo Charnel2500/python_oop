@@ -4,10 +4,10 @@ print('''Welcome in my game. You will fight until you will die.
 You can choose between four faction. Choose your faction. Then choose a fighter from that faction
 and fight against random enemy.\n\n''')
 
-time.sleep(2)
+time.sleep(1)
 username = input("What is your name?\n")
 print("Hi " + username + "!")
-time.sleep(2)
+time.sleep(1)
 
 faction = input("Choose your faction. Give me a number. 1. Outworld, 2. Netherrealm, 3. Martial Artist, 4. Spec Ops\n")
 
@@ -66,6 +66,8 @@ class Fighter(object):
     def absorb_attack(self, hit):
         self.hp = self.hp - hit + self.defense
 
+    def regen(self):
+        self.hp = self.hp + self.regeneration
 
 class Outworld_Fighter(Fighter):
     def __str__(self):
@@ -124,13 +126,20 @@ opponent_fighter = fighter_dict[random_number]
 print(opponent_fighter.name + " is your opponent\n")
 print("Fight!\n")
 while opponent_fighter.hp > 0 and player_fighter.hp > 0:
-    choose_attack = input("Choose your attack: 1. Punch, 2. Kick \n")
-    if choose_attack == "1":
+    player_move = input("Choose your attack: 1. Punch, 2. Kick \n")
+    if player_move == "1":
         player_fighter.hand_attack(opponent_fighter)
-    elif choose_attack == "2":
+    elif player_move == "2":
         player_fighter.leg_attack(opponent_fighter)
     else:
         print("Wrong number!")
+    opponent_move = random.randint(1,2)
+    if opponent_move == 1:
+        opponent_fighter.hand_attack(player_fighter)
+    elif opponent_move == 2:
+        opponent_fighter.leg_attack(player_fighter)
+    player_fighter.regen()
+    opponent_fighter.regen()
     player_fighter.stats_show()
     opponent_fighter.stats_show()
 
