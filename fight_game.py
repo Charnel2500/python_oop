@@ -63,30 +63,42 @@ class Fighter(object):
         hit = 1.2*self.attack
         enemy.absorb_attack(hit)
 
+    def special_attack(self,enemy):
+        print("You use special attack.")
+        enemy.regeneration = 0
+
     def absorb_attack(self, hit):
         self.hp = self.hp - hit + self.defense
 
-    def regen(self):
+    def regen(self): #dorob metode na max hp
         self.hp = self.hp + self.regeneration
 
 class Outworld_Fighter(Fighter):
     def __str__(self):
         rep = "I am outworld fighter. \n"
+        if opponent_fighter == Martial_Artist_Fighter(Fighter):
+            self.attack = 1.1*self.attack
         return rep
 
 class Netherrealm_Fighter(Fighter):
     def __str__(self):
         rep = "I am netherrealm fighter. \n"
+        if opponent_fighter == Spec_Ops_Fighter(Fighter):
+            self.attack = 1.1*self.attack
         return rep
 
 class Marial_Artist_Fighter(Fighter):
     def __str__(self):
         rep = "I am martial artist. \n"
+        if opponent_fighter == Netherrealm_Fighter(Fighter):
+            self.attack = 1.1*self.attack
         return rep
 
 class Spec_Ops_Fighter(Fighter):
     def __str__(self):
         rep = "I am Spec Ops. \n"
+        if opponent_fighter == Outworld_Fighter(Fighter):
+            self.attack = 1.1*self.attack
         return rep
 
 kitana = Outworld_Fighter("Kitana",100, 1200, 80, 25, "Kitana is the daughter of the one time rulers of Edenia King Jerod and Queen Sindel. She was no more than just a few years old when Jerod's best warriors lost 10 Mortal Kombat tournaments to Outworld's warriors. As Outworld's Emperor Shao Kahn invades Edenia, he kills Jerod and takes Sindel as his wife. Soon thereafter, Sindel committs suicide, leaving Kitana at the whim of the power hungry Emperor. Kahn takes the infant child of Jerod and Sindel and raises her as her personal assassin. Then, Shang Tsung creates a crotesque Tarkatan clone of Kitana named Mileena in which to be raised along with Kitana who would recognized her (for a time) as her twin sister. Though she would not compete in the Earthrealm tournaments but would do what she can do make her Emperor proud in his own tournament in Outworld")
@@ -126,18 +138,22 @@ opponent_fighter = fighter_dict[random_number]
 print(opponent_fighter.name + " is your opponent\n")
 print("Fight!\n")
 while opponent_fighter.hp > 0 and player_fighter.hp > 0:
-    player_move = input("Choose your attack: 1. Punch, 2. Kick \n")
+    player_move = input("Choose your attack: 1. Punch, 2. Kick, 3. Special Attack \n")
     if player_move == "1":
         player_fighter.hand_attack(opponent_fighter)
     elif player_move == "2":
         player_fighter.leg_attack(opponent_fighter)
+    elif player_move == "3":
+        player_fighter.special_attack(opponent_fighter)
     else:
         print("Wrong number!")
-    opponent_move = random.randint(1,2)
+    opponent_move = random.randint(1,3)
     if opponent_move == 1:
         opponent_fighter.hand_attack(player_fighter)
     elif opponent_move == 2:
         opponent_fighter.leg_attack(player_fighter)
+    elif opponent_move == 3:
+        opponent_fighter.special_attack(player_fighter)
     player_fighter.regen()
     opponent_fighter.regen()
     player_fighter.stats_show()
